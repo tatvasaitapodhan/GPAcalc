@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9857331162482604"
-     crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <meta name="description" content="Accurate CGPA calculator as per IIT-style relative grading (R.7.6 & R.7.10). Handles F, W, L, I, U grades. Free tool for students.">
+    <meta name="description" content="Accurate CGPA calculator as per IIT/IIIT relative grading (R.7.6 & R.7.10). Handles F, W, L, I, U grades. Free tool for students.">
     <meta name="keywords" content="CGPA calculator, GPA calculator, IIT grading, relative grading, grade points, semester GPA, IIIT K">
     <meta name="author" content="Your Name">
-    <meta property="og:title" content="CGPA Calculator | IIIT K Style Relative Grading">
+    <meta property="og:title" content="CGPA Calculator | Relative Grading System">
     <meta property="og:description" content="Calculate semester GPA and cumulative CGPA including F/W/L credits. Based on official regulation.">
-    <meta property="og:type" content="website">
     <title>CGPA Calculator | IIIT K Style Relative Grading</title>
     <style>
         * {
@@ -38,7 +35,6 @@
             background: linear-gradient(135deg, #0A2647 0%, #1B4A6F 100%);
             color: white;
             padding: 1.5rem 2rem;
-            position: relative;
             border-bottom: 4px solid #00B4D8;
         }
         .header-content {
@@ -55,25 +51,18 @@
             font-size: 1.3rem;
             letter-spacing: 1px;
             border-left: 3px solid #00B4D8;
-            backdrop-filter: blur(2px);
         }
-        .iiit-emblem span {
-            color: #00D4FF;
-        }
+        .iiit-emblem span { color: #00D4FF; }
         .title-text h1 {
             margin: 0;
             font-weight: 600;
             font-size: 1.9rem;
-            letter-spacing: -0.3px;
         }
         .title-text p {
             margin: 0.2rem 0 0;
             opacity: 0.85;
-            font-size: 0.9rem;
         }
-        .content {
-            padding: 2rem;
-        }
+        .content { padding: 2rem; }
         .ad-container {
             text-align: center;
             background: #f9fafc;
@@ -88,7 +77,7 @@
             background: #f8fafc;
             border-radius: 1.25rem;
             padding: 1rem 1.2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             border: 1px solid #e2edf2;
             overflow-x: auto;
         }
@@ -108,8 +97,16 @@
             padding: 0.2rem 0.7rem;
             font-size: 0.7rem;
             font-weight: 500;
-            color: #005e77;
         }
+        .info-box {
+            background: #eef2fa;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            margin: 1rem 0 1.5rem;
+            border-left: 4px solid #2c7da0;
+        }
+        .info-box h3 { margin: 0 0 0.5rem; color: #0f2b3d; }
+        .info-box p { margin: 0.3rem 0; font-size: 0.9rem; }
         .section-title {
             font-size: 1.4rem;
             font-weight: 600;
@@ -177,10 +174,7 @@
             background: #eef2fa;
             color: #1f4e6e;
         }
-        .btn-primary {
-            background: #2c7da0;
-            color: white;
-        }
+        .btn-primary { background: #2c7da0; color: white; }
         .btn-primary:hover { background: #1f5e7e; }
         .stats-grid {
             display: flex;
@@ -199,11 +193,7 @@
             padding: 1rem;
             border: 1px solid #e2edf2;
         }
-        .stat-value {
-            font-size: 1.9rem;
-            font-weight: 700;
-            color: #0f2b3d;
-        }
+        .stat-value { font-size: 1.9rem; font-weight: 700; color: #0f2b3d; }
         .cgpa-section {
             background: #e9f2f7;
             border-radius: 1.3rem;
@@ -246,7 +236,40 @@
             color: #2c7da0;
             text-decoration: none;
             margin: 0 0.5rem;
+            cursor: pointer;
         }
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(3px);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 8% auto;
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.2);
+        }
+        .modal-content h2 { margin-top: 0; color: #0f2b3d; }
+        .close {
+            float: right;
+            font-size: 1.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: #888;
+        }
+        .close:hover { color: #000; }
         .cookie-banner {
             position: fixed;
             bottom: 0;
@@ -281,12 +304,9 @@
 <body>
 <div class="container">
     <div class="main-card">
-        <!-- IIIT K style header -->
         <div class="header">
             <div class="header-content">
-                <div class="iiit-emblem">
-                    IIIT <span>K</span>
-                </div>
+                <div class="iiit-emblem">IIIT <span>K</span></div>
                 <div class="title-text">
                     <h1>📊 CGPA Calculator</h1>
                     <p>Relative Grading System (R.7.6 & R.7.10) | F/W/L/I/U compliant</p>
@@ -294,15 +314,14 @@
             </div>
         </div>
         <div class="content">
-            <!-- Grade reference table -->
+            <!-- Grade reference -->
             <div class="grade-table-ref">
                 <div style="display:flex; justify-content:space-between; flex-wrap:wrap; margin-bottom:10px;">
                     <strong>📌 Letter Grade & Grade Points</strong>
                     <span class="badge">I & U excluded from GPA/CGPA</span>
                 </div>
                 <table>
-                    <thead><tr><th>A</th><th>A-</th><th>B</th><th>B-</th><th>C</th><th>C-</th><th>D</th><th>F</th><th>L</th><th>W</th><th>I</th><th>U</th></tr>
-                    </thead>
+                    <thead><tr><th>A</th><th>A-</th><th>B</th><th>B-</th><th>C</th><th>C-</th><th>D</th><th>F</th><th>L</th><th>W</th><th>I</th><th>U</th></tr></thead>
                     <tbody>
                         <tr><td>10</td><td>9</td><td>8</td><td>7</td><td>6</td><td>5</td><td>4</td><td>0</td><td>0</td><td>0</td><td>—</td><td>—</td></tr>
                         <tr style="background:#f8f0e6;"><td colspan="12" style="font-size:0.7rem;">⚠️ F, W, L have 0 points but credits count in denominator. I & U completely excluded.</td></tr>
@@ -310,9 +329,17 @@
                 </table>
             </div>
 
+            <!-- Explanatory text for AdSense content requirements -->
+            <div class="info-box">
+                <h3>📖 How GPA is calculated (as per R.7.10)</h3>
+                <p><strong>GPA = Σ(Cᵢ × GPᵢ) / ΣCᵢ</strong> where ΣCᵢ includes credits for courses with <strong>F, W, L</strong> grades (even though they carry 0 grade points). Courses with <strong>I (Incomplete)</strong> and <strong>U (Audit)</strong> are completely excluded from both numerator and denominator.</p>
+                <p>This calculator follows the exact relative grading rules used in IITs/IIITs. Enter your course credits and grades, then add any previous CGPA to compute your overall cumulative CGPA.</p>
+                <p>💡 <strong>Example:</strong> A 5-credit course with grade 'B' (GP=8) contributes 40 quality points and 5 denominator credits. An 'F' grade contributes 0 points but still adds 5 denominator credits – which lowers your GPA.</p>
+            </div>
+
             <!-- Ad slot #1 (top) -->
             <div class="ad-container" id="adTop">
-                📢 [AdSpace] – Replace with AdSense code
+                📢 [Advertisement] – Replace with AdSense code
             </div>
 
             <!-- Course table -->
@@ -320,8 +347,7 @@
                 <div class="section-title">📚 Semester Courses</div>
                 <div class="table-wrapper">
                     <table class="courses-table" id="coursesTable">
-                        <thead><tr><th>#</th><th>Credits (Cᵢ)</th><th>Letter Grade</th><th></th></tr>
-                        </thead>
+                        <thead><tr><th>#</th><th>Credits (Cᵢ)</th><th>Letter Grade</th><th></th></tr></thead>
                         <tbody id="coursesTbody"></tbody>
                     </table>
                 </div>
@@ -352,19 +378,62 @@
 
             <!-- Ad slot #2 (bottom) -->
             <div class="ad-container" id="adBottom">
-                📢 [AdSpace] – Replace with AdSense code
+                📢 [Advertisement] – Replace with AdSense code
             </div>
 
-            <!-- Footer links -->
+            <!-- Footer links (now open modals) -->
             <div class="footer-links">
-                <a href="#" id="privacyLink">Privacy Policy</a> |
-                <a href="#" id="aboutLink">About</a> |
-                <a href="#" id="contactLink">Contact</a>
+                <a id="privacyLink">Privacy Policy</a> |
+                <a id="aboutLink">About</a> |
+                <a id="contactLink">Contact</a>
             </div>
             <div class="footnote" style="margin-top:1rem;">
                 ✅ Based on R.7.10 & R.7.6. F, W, L included in denominator; I/U excluded.
             </div>
         </div>
+    </div>
+</div>
+
+<!-- Modals for Privacy, About, Contact -->
+<div id="privacyModal" class="modal">
+    <div class="modal-content">
+        <span class="close" data-modal="privacyModal">&times;</span>
+        <h2>Privacy Policy</h2>
+        <p><strong>Effective date:</strong> [Current Date]</p>
+        <p>This website (gpafromgrade.netlify.app) does not collect any personal data directly. All calculations happen locally in your browser. No information is stored on our servers.</p>
+        <p>We use <strong>Google AdSense</strong> to show ads. AdSense may use cookies to serve personalized ads based on your previous visits to this or other websites. You can learn more about Google’s privacy policy <a href="https://policies.google.com/privacy" target="_blank">here</a>.</p>
+        <p>By using this site, you consent to the use of cookies for advertising and analytics purposes. You can disable cookies in your browser settings, but that may affect ad personalization.</p>
+        <p>If you have any questions, please contact us via the Contact page.</p>
+    </div>
+</div>
+
+<div id="aboutModal" class="modal">
+    <div class="modal-content">
+        <span class="close" data-modal="aboutModal">&times;</span>
+        <h2>About This CGPA Calculator</h2>
+        <p>This tool follows the <strong>relative grading system</strong> described in academic regulations <strong>R.7.6</strong> and <strong>R.7.10</strong> (commonly used in IITs, IIITs, and other Indian institutes).</p>
+        <p>Key features:</p>
+        <ul>
+            <li>Handles <strong>F, W, L</strong> grades – 0 grade points but credits count in denominator.</li>
+            <li><strong>I (Incomplete)</strong> and <strong>U (Audit)</strong> grades are completely excluded from GPA/CGPA.</li>
+            <li>Calculate semester GPA and cumulative CGPA by entering previous CGPA & credits.</li>
+            <li>Dynamic course list – add or remove courses as needed.</li>
+        </ul>
+        <p>Created by [Your Name] to help students accurately compute their academic standing. No data is ever transmitted or stored – everything runs in your browser.</p>
+        <p>Version: 2.0 | Last updated: May 2026</p>
+    </div>
+</div>
+
+<div id="contactModal" class="modal">
+    <div class="modal-content">
+        <span class="close" data-modal="contactModal">&times;</span>
+        <h2>Contact Us</h2>
+        <p>For questions, suggestions, or bug reports, you can reach out:</p>
+        <p>📧 Email: <strong>your-email@example.com</strong></p>
+        <p>🐛 Report issues: Please include your browser version and a description of the problem.</p>
+        <p>We aim to respond within 2–3 business days.</p>
+        <hr>
+        <p><em>Note: This tool is provided for educational purposes. Always verify with your official grade card.</em></p>
     </div>
 </div>
 
@@ -396,6 +465,7 @@
     function refreshAll() {
         const rows = document.querySelectorAll('#coursesTbody .course-row');
         let denom=0, points=0, regCredits=0;
+        
         for(let row of rows) {
             let credits = parseFloat(row.querySelector('.credit-input').value);
             if(isNaN(credits)) credits=0;
@@ -405,10 +475,12 @@
             points += p;
             denom += d;
         }
+        
         denom = Math.round(denom*100)/100;
         points = Math.round(points*100)/100;
         regCredits = Math.round(regCredits*100)/100;
         let gpa = denom>0 ? points/denom : 0;
+        
         document.getElementById('denomCredits').innerText = denom.toFixed(2);
         document.getElementById('totalPoints').innerText = points.toFixed(2);
         document.getElementById('semesterGPA').innerText = gpa.toFixed(2);
@@ -416,76 +488,100 @@
 
         let prevCGPA = parseFloat(document.getElementById('prevCgpa').value) || 0;
         let prevCred = parseFloat(document.getElementById('prevCredits').value) || 0;
+        
         let totalPointsAll = prevCGPA*prevCred + points;
         let totalCredAll = prevCred + denom;
         let cgpa = totalCredAll>0 ? totalPointsAll/totalCredAll : 0;
+
         document.getElementById('overallCGPA').innerText = cgpa.toFixed(2);
     }
 
-    function createRow(index, creditsVal, gradeVal) {
+    function removeRow(btn) {
+        btn.closest('tr').remove();
+        
+        // Re-number rows
+        const rows = document.querySelectorAll('#coursesTbody .course-row');
+        rows.forEach((row, index) => {
+            row.cells[0].innerText = index + 1;
+        });
+        
+        refreshAll();
+    }
+
+    function addCourse(credits = 5, grade = 'A') {
+        const rowCount = document.querySelectorAll('#coursesTbody .course-row').length + 1;
         const tr = document.createElement('tr');
         tr.className = 'course-row';
+        
+        let gradeOptions = '';
+        for (const [key, value] of Object.entries(gradePointMap)) {
+            gradeOptions += `<option value="${key}" ${key === grade ? 'selected' : ''}>${key}</option>`;
+        }
+
         tr.innerHTML = `
-            <td style="font-weight:500">${index+1}</td>
-            <td><input type="number" step="0.5" min="0" value="${creditsVal}" class="credit-input"></td>
-            <td><select class="grade-select">${['A','A-','B','B-','C','C-','D','F','L','W','I','U'].map(g=>`<option value="${g}" ${g===gradeVal?'selected':''}>${g}</option>`).join('')}</select></td>
-            <td><button class="remove-btn" title="Remove course">🗑️</button></td>
+            <td>${rowCount}</td>
+            <td><input type="number" class="credit-input" value="${credits}" min="0" step="0.5"></td>
+            <td><select class="grade-select">${gradeOptions}</select></td>
+            <td><button class="remove-btn" onclick="removeRow(this)">×</button></td>
         `;
+
+        // Add event listeners directly to the new elements
         tr.querySelector('.credit-input').addEventListener('input', refreshAll);
         tr.querySelector('.grade-select').addEventListener('change', refreshAll);
-        tr.querySelector('.remove-btn').addEventListener('click', () => { tr.remove(); refreshAll(); updateNumbers(); });
-        return tr;
-    }
 
-    function updateNumbers() {
-        document.querySelectorAll('#coursesTbody .course-row').forEach((row,i) => { row.cells[0].innerText = i+1; });
-    }
-
-    function loadCourses(courses) {
-        tbody.innerHTML = '';
-        courses.forEach((c,idx) => tbody.appendChild(createRow(idx, c.credits, c.grade)));
+        tbody.appendChild(tr);
         refreshAll();
     }
 
-    function resetDefault() {
-        loadCourses([{credits:5,grade:'A'},{credits:5,grade:'A'},{credits:5,grade:'A'},{credits:5,grade:'A'},{credits:5,grade:'A'}]);
-        document.getElementById('prevCgpa').value = '0.00';
-        document.getElementById('prevCredits').value = '0.00';
+    function resetToDefault() {
+        tbody.innerHTML = ''; // Clear current courses
+        for (let i = 0; i < 5; i++) {
+            addCourse();
+        }
+        document.getElementById('prevCgpa').value = "0.00";
+        document.getElementById('prevCredits').value = "0.00";
         refreshAll();
     }
 
-    addBtn.addEventListener('click', () => {
-        let newIdx = document.querySelectorAll('.course-row').length;
-        tbody.appendChild(createRow(newIdx, 3, 'A'));
-        refreshAll();
-        updateNumbers();
-    });
-    resetBtn.addEventListener('click', resetDefault);
+    // Button Listeners
+    addBtn.addEventListener('click', () => addCourse());
+    resetBtn.addEventListener('click', resetToDefault);
     document.getElementById('prevCgpa').addEventListener('input', refreshAll);
     document.getElementById('prevCredits').addEventListener('input', refreshAll);
 
-    // Privacy/About placeholders
-    document.getElementById('privacyLink').addEventListener('click', (e) => {
-        e.preventDefault();
-        alert("Privacy Policy: This tool does not store personal data. Cookies may be used by advertising partners. No user data is collected by us.\n\nFull policy will be hosted at /privacy.html");
-    });
-    document.getElementById('aboutLink').addEventListener('click', (e) => {
-        e.preventDefault();
-        alert("CGPA Calculator based on IIT relative grading rules (R.7.6 & R.7.10). Developed for students. IIIT K style theme.");
+    // Modal & Footer Logic
+    const modals = ['privacyModal', 'aboutModal', 'contactModal'];
+    
+    document.getElementById('privacyLink').onclick = () => document.getElementById('privacyModal').style.display = 'block';
+    document.getElementById('aboutLink').onclick = () => document.getElementById('aboutModal').style.display = 'block';
+    document.getElementById('contactLink').onclick = () => document.getElementById('contactModal').style.display = 'block';
+
+    document.querySelectorAll('.close').forEach(closeBtn => {
+        closeBtn.onclick = function() {
+            const modalId = this.getAttribute('data-modal');
+            document.getElementById(modalId).style.display = 'none';
+        }
     });
 
-    // Cookie consent
-    const cookieBanner = document.getElementById('cookieBanner');
-    if (!localStorage.getItem('cookieAccepted')) {
-        cookieBanner.style.display = 'flex';
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.style.display = 'none';
+        }
     }
-    document.getElementById('acceptCookies').addEventListener('click', () => {
-        localStorage.setItem('cookieAccepted', 'true');
-        cookieBanner.style.display = 'none';
-    });
 
-    // Initialize default
-    resetDefault();
+    // Cookie Banner Logic
+    if (!localStorage.getItem('cookiesAccepted')) {
+        document.getElementById('cookieBanner').style.display = 'flex';
+    }
+
+    document.getElementById('acceptCookies').onclick = function() {
+        localStorage.setItem('cookiesAccepted', 'true');
+        document.getElementById('cookieBanner').style.display = 'none';
+    };
+
+    // Initialize Default View
+    resetToDefault();
+
 </script>
 </body>
 </html>
